@@ -1,6 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 name: Azure ARM
 jobs:
   build-and-deploy:
@@ -21,6 +25,6 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./main.bicep
+        template: ./storage.bicep
         parameters: storagePrefix=mystore
         failOnStdErr: false
